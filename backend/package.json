@@ -1,0 +1,36 @@
+{
+  "name": "skillforge",
+  "version": "1.0.0",
+  "description": "Easy to use learning web-application",
+  "homepage": "https://github.com/petricdarius/SkillForge#readme",
+  "bugs": {
+    "url": "https://github.com/petricdarius/SkillForge/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petricdarius/SkillForge.git"
+  },
+  "license": "ISC",
+  "author": "Petric Darius",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.3.1",
+    "mongoose": "^9.3.3",
+    "morgan": "^1.10.1",
+    "slugify": "^1.6.8",
+    "validator": "^13.15.26",
+    "xss": "^1.0.15",
+    "xss-clean": "^0.1.4"
+  }
+}
