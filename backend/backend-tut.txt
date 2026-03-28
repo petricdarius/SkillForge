@@ -1,0 +1,63 @@
+===========================================================
+DOCUMENTAȚIE STRUCTURĂ PROIECT NODE.JS (CURS JONAS)
+===========================================================
+
+1. SEPARAREA FIȘIERELOR (server.js vs app.js)
+-----------------------------------------------------------
+* app.js: Se ocupă de LOGICA APLICAȚIEI (Express). Aici se 
+  configurează middleware-urile, rutele și error handler-ul. 
+ 
+* server.js: Se ocupă de MEDIUL DE RULARE. Aici configurezi 
+  baza de date (Mongoose), variabilele de mediu (.env) și 
+  pornești serverul propriu-zis (app.listen).
+* DE CE? Pentru a separa configurarea rețelei de logica 
+  aplicației, facilitând testarea automată pe viitor.
+
+2. UTILITATEA IMPORTURILOR (MIDDLEWARE)
+-----------------------------------------------------------
+* morgan: Logger pentru cereri HTTP. Îți arată în consolă 
+  ce rute sunt accesate.
+* express-rate-limit: Protecție Brute Force. Limitează 
+  numărul de cereri de la același IP (ex: 100/oră).
+* express-mongo-sanitize: Securitate. Elimină caracterele 
+  speciale ($ sau .) din input pentru a preveni NoSQL 
+  Injection.
+* cookie-parser: Parsează datele din cookie-uri și le 
+  pune în req.cookies.
+* dotenv: Încarcă variabilele de mediu din fișierul 
+  config.env în process.env.
+
+3. GESTIONAREA ERORILOR (AppError vs ErrorController)
+-----------------------------------------------------------
+* appError.js: O clasă care extinde clasa Error nativă. 
+  Se folosește pentru a crea erori "operaționale" (cele 
+  pe care le anticipăm, cum ar fi un 404 sau o parolă 
+  greșită).
+* errorController.js: "Creierul" care decide ce primește 
+  clientul.
+    - În DEVELOPMENT: Trimite detalii complete (stack trace).
+    - În PRODUCTION: Trimite mesaje prietenoase și ascunde 
+      detaliile tehnice.
+* DE CE? Fără un controller global, Express ar trimite 
+  erori în format HTML sau text simplu. Aici forțăm 
+  răspunsul JSON pentru API.
+
+4. CE FACE catchAsync.js?
+-----------------------------------------------------------
+* Este o funcție de tip "wrapper". Deoarece funcțiile 
+  async returnează un Promise, dacă apare o eroare, 
+  trebuie să apelăm next(err).
+* catchAsync elimină nevoia de a scrie try-catch în 
+  fiecare controller.
+* Codul `fn(req, res, next).catch(next)` trimite orice 
+  eroare direct către Global Error Handler.
+
+5. DE CE NU APARE EROARE JSON AUTOMAT?
+-----------------------------------------------------------
+* Express nu "ghicește" formatul dorit. Dacă nu ai 
+  specificat în errorController.js că vrei 
+  res.status().json(), Express va folosi comportamentul 
+  său default (care de multe ori nu e JSON).
+* Tu ai configurat manual verificarea: if (req.originalUrl.
+  startsWith('/api')) { ... json(...) }.
+===========================================================
