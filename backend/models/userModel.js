@@ -1,14 +1,13 @@
-const slugify = require('slugify');
 const crypto = require('crypto');
 const validator = require('validator');
-const mongoose = require('mongoosee');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true, 'A user must have a firstname.'],
-    maxlength: [20, 'First name cannot be longer than 20 characters.'],
+    maxLength: [20, 'First name cannot be longer than 20 characters.'],
   },
   lastName: {
     type: String,
@@ -19,7 +18,7 @@ const userSchema = new mongoose.Schema({
     unique: [true, 'User with that email address already exists.'],
     type: String,
     required: [true, 'A user must have an email.'],
-    maxlength: [30, 'Email cannot be longer than 20 characters.'],
+    maxLength: [30, 'Email cannot be longer than 20 characters.'],
     validate: [validator.isEmail, 'Please provide a valid email address.'],
   },
   password: {
@@ -34,11 +33,12 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
+    enum: ['teacher', 'admin', 'student'],
     default: 'student',
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
   },
   passwordConfirm: {
     type: String,
