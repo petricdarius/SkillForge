@@ -5,9 +5,9 @@ const QuizSchema = new mongoose.Schema({
   duration: Number,
   openDate: Date,
   closeDate: Date,
-  course: {
+  subject: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Course',
+    ref: 'Subject',
   },
   //? For easier tracking, beacuse teachers can change
   teacher: {

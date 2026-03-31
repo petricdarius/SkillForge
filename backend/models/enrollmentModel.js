@@ -5,9 +5,9 @@ const EnrollmentSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
   },
-  courseId: {
+  subjectId: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Course',
+    ref: 'Subject',
   },
   enrolledAt: {
     type: Date,

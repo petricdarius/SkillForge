@@ -6,10 +6,10 @@ const ResultSchema = new mongoose.Schema({
     ref: 'User',
     required: [true, 'Result must corespond to an user.'],
   },
-  course: {
+  subject: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Course',
-    required: [true, 'Result must corespond to a course.'],
+    ref: 'Subject',
+    required: [true, 'Result must corespond to a subject.'],
   },
   quiz: {
     type: mongoose.Schema.ObjectId,

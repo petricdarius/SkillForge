@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const slugify = require('slugify');
 
-const CourseSchema = new mongoose.Schema(
+const subjectSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'A course must have a name'],
+      required: [true, 'A subject must have a name'],
     },
     lessons: [
       {
@@ -16,7 +16,7 @@ const CourseSchema = new mongoose.Schema(
     teacher: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: [true, 'A course must have a teacher'],
+      // required: [true, 'A subject must have a teacher'],
     },
     slug: String,
     price: { type: Number, default: 0 },
@@ -27,12 +27,6 @@ const CourseSchema = new mongoose.Schema(
   },
 );
 
-CourseSchema.pre('save', function (next) {
-  if (!this.isModified('name')) return next();
+const Subject = mongoose.model('subject', subjectSchema);
 
-  this.slug = slugify(this.name, { lower: true });
-});
-
-const Course = mongoose.model('Course', CourseSchema);
-
-module.exports = Course;
+module.exports = Subject;
