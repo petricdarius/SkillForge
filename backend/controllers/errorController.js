@@ -29,11 +29,12 @@ const sendErrorDev = (error, req, res) => {
     });
   }
   //Rendered website
-  // console.log('Error!', error);
-  return res.status(error.statusCode).render('error', {
-    title: 'Something went wrong.',
-    msg: error.message,
-  });
+  console.log('Error!', error);
+  // return res.status(error.statusCode).render('error', {
+  //   title: 'Something went wrong.',
+  //   msg: error.message,
+  // });
+  return res.status(error.statusCode).json({ message: error.message });
 };
 
 const sendErrorProd = (error, req, res) => {

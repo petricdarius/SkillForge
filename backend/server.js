@@ -23,7 +23,7 @@ mongoose.connect(dbCon).then((con) => {
 
 const PORT = process.env.BE_PORT;
 const server = app.listen(PORT, () => {
-  console.log('App running on port ', PORT);
+  console.log('App running on port', PORT);
 });
 
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));

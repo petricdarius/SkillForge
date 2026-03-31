@@ -9,6 +9,7 @@ const path = require('path');
 
 const userRoutes = require('../backend/routes/userRoutes');
 const geminiRoutes = require('../backend/routes/geminiRoutes');
+const subjectsRoutes = require('../backend/routes/subjectRoutes');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -51,6 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/ai', geminiRoutes);
+app.use('/api/v1/subjects', subjectsRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl}`, 404));
