@@ -1,20 +1,26 @@
 const mongoose = require('mongoose');
 
-const unitSchema = new mongoose.Schema({
-  title: String,
-  slug: String,
-  subject: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Subject',
-  },
-  year: Number,
-  lessons: [
-    {
+const unitSchema = new mongoose.Schema(
+  {
+    title: String,
+    slug: String,
+    subject: {
       type: mongoose.Schema.ObjectId,
-      ref: 'Lesson',
+      ref: 'Subject',
     },
-  ],
-});
+    year: Number,
+    lessons: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Lesson',
+      },
+    ],
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  },
+);
 
 const Unit = new mongoose.model('Unit', unitSchema);
 
