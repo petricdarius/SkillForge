@@ -7,12 +7,10 @@ const subjectSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A subject must have a name'],
     },
-    lessons: [
-      {
-        type: mongoose.Schema.ObjectId,
-        ref: 'Lesson',
-      },
-    ],
+    unit: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Unit',
+    },
     teacher: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
