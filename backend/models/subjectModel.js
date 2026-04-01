@@ -7,10 +7,12 @@ const subjectSchema = new mongoose.Schema(
       type: String,
       required: [true, 'A subject must have a name'],
     },
-    unit: {
-      type: mongoose.Schema.ObjectId,
-      ref: 'Unit',
-    },
+    units: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Unit',
+      },
+    ],
     teacher: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
@@ -25,6 +27,6 @@ const subjectSchema = new mongoose.Schema(
   },
 );
 
-const Subject = mongoose.model('subject', subjectSchema);
+const Subject = mongoose.model('Subject', subjectSchema);
 
 module.exports = Subject;
