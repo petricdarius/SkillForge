@@ -7,6 +7,34 @@ const lessonSchema = new mongoose.Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Unit',
   },
+
+  lessonKeywords: [
+    {
+      keyword: String,
+      description: String,
+    },
+  ],
+
+  keyLearningPoints: [
+    {
+      keyLearningPoint: String,
+    },
+  ],
+
+  misconceptionsAndCommonMistakes: [
+    {
+      misconception: String,
+      response: String,
+    },
+  ],
+
+  pupilLessonOutcome: String,
+
+  teacherTips: [
+    {
+      teacherTip: String,
+    },
+  ],
 });
 
 const Lesson = new mongoose.model('Lesson', lessonSchema);

@@ -11,6 +11,7 @@ const userRoutes = require('../backend/routes/userRoutes');
 const geminiRoutes = require('../backend/routes/geminiRoutes');
 const subjectsRoutes = require('../backend/routes/subjectRoutes');
 const unitsRoutes = require('../backend/routes/unitsRoutes');
+const lessonsRoutes = require('../backend/routes/lessonsRoutes');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -53,6 +54,7 @@ app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/ai', geminiRoutes);
 app.use('/api/v1/subjects', subjectsRoutes);
 app.use('/api/v1/units', unitsRoutes);
+app.use('/api/v1/lessons', lessonsRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl}`, 404));

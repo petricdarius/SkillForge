@@ -92,8 +92,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   req.user = user;
-  //* For frontend access, since we can't access the request object
-  res.locals.user = user;
+
   next();
 });
 

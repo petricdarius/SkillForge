@@ -4,6 +4,6 @@ const unitController = require('../controllers/unitController');
 
 const router = express.Router();
 
-router.get('/:subSlug/:id', unitController.getUnit);
+router.get('/:subSlug/unit/:id', unitController.getUnit);
 
 module.exports = router;
